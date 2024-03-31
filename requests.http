@@ -1,0 +1,36 @@
+### Send bodu
+POST localhost:8080/
+Content-Type: application/json
+
+{
+  "result_id": 1633,
+  "site_name": "Speedtest Tracker",
+  "metrics": [
+    {
+      "name": "Download",
+      "threshold": "450 Mbps",
+      "value": "447.69 Mbps"
+    }
+  ]
+}
+
+### Send bodu map
+POST localhost:8080/
+Content-Type: application/json
+
+{
+  "result_id": 3931,
+  "site_name": "Speedtest Tracker",
+  "metrics": {
+    "1": {
+      "name": "Upload",
+      "threshold": "400 Mbps",
+      "value": "288.76 Mbps"
+    },
+    "2": {
+      "name": "Ping",
+      "threshold": "3 ms",
+      "value": "4.41 ms"
+    }
+  }
+}
