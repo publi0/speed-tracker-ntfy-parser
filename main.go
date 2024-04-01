@@ -58,8 +58,18 @@ func parseAndFormat(jsonData string) string {
 
 	var metricsParsed []Metrics
 	// Access metrics based on type
-	if metrics, ok := result.Metrics.([]Metrics); ok {
-		metricsParsed = metrics
+	if metrics, ok := result.Metrics.([]interface{}); ok {
+		metricsParsed = make([]Metrics, 0, len(metrics))
+		for _, metric := range metrics {
+			metricMap := metric.(map[string]interface{})
+			metricsParsed = append(
+				metricsParsed, Metrics{
+					Name:      metricMap["name"].(string),
+					Threshold: metricMap["threshold"].(string),
+					Value:     metricMap["value"].(string),
+				},
+			)
+		}
 	} else {
 		resultMap := ResultMap{}
 		err := json.Unmarshal([]byte(jsonData), &resultMap)

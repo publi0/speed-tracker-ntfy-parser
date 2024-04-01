@@ -36,6 +36,6 @@ build-unix:
 all: test build
 
 docker-deploy: build-unix
-	docker build -t ntfy-parser-speed-tracker . &&
-	docker tag ntfy-parser-speed-tracker:latest felipecanton/ntfy-parser-speed-tracker:latest &&
-	docker push felipecanton/ntfy-parser-speed-tracker:latest
+	docker build -t $(BINARY_NAME) .
+	docker tag $(BINARY_NAME):latest felipecanton/$(BINARY_NAME):latest
+	docker push felipecanton/$(BINARY_NAME)
